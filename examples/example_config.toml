@@ -1,0 +1,20 @@
+[[hosts]]
+name = "test-01"
+ip = "root@143.244.145.107"
+
+[[hosts]]
+name = "test-02"
+ip = "root@64.227.7.67"
+
+[[hosts]]
+name = "test-03"
+ip = "root@137.184.61.50"
+
+[[hosts]]
+name = "test-04"
+ip = "root@147.182.221.239"
+
+[[users]]
+username = "john"
+password = "password123"
+groups = ["wheel"]
