@@ -1,8 +1,14 @@
-# Foundry
+<div align="center">
+  <h1><code>foundry</code></h1>
 
-Foundry is a CLI tool for automating and managing configurations across remote machines via SSH. This tool allows administrators and developers to automate common configuration tasks, such as user management and system setup, across diverse Linux environments without requiring a dedicated agent on each target machine.
+  <p><b>Foundry is a CLI tool for automating and managing configurations across remote machines via SSH without requiring a dedicated agent on each target machine like [outpost](https://github.com/johnnyfreeman/outpost).
+</b></p>
+</div>
 
-## Overview
+> [!WARNING]
+> **This project is in its early stages and may undergo many breaking changes in the future.**
+
+# Overview
 
 Foundry focuses on simple, SSH-based automation across multiple operating systems, including RHEL 7, RHEL 9, Ubuntu 20.04, and Arch Linux. With an emphasis on reliability and modularity, Foundry provides a streamlined interface for handling configuration tasks, ensuring systems are configured precisely as specified.
 Key Capabilities
@@ -12,19 +18,19 @@ Key Capabilities
 - **OS-Specific Task Management**: Supports common system tasks tailored to each OS.
 - **Modular Design**: Designed to grow with additional tasks and features over time.
 
-## How It Works
+# How It Works
 
 Foundry uses a TOML configuration file to define hosts, users, and tasks. It then reads this configuration, connects to each specified machine, and applies configurations based on the parameters provided.
 
-## Setup Instructions
+# Setup Instructions
 
-### Prerequisites
+## Prerequisites
 
 - **Rust**: Required to build Foundry.
 - **SSH Access**: Ensure SSH connectivity to each remote machine.
 - **Supported OSes**: Compatible with RHEL 7, RHEL 9, Ubuntu 20.04, and Arch Linux.
 
-### Installation
+## Installation
 
 Clone and Build:
 
@@ -69,7 +75,7 @@ groups = ["admin"]
 
 This configuration will connect to the specified servers, create user accounts, and assign them to the defined groups. Future support could extend this format to allow for additional task definitions, such as installing packages or configuring firewall rules.
 
-## Usage
+# Usage
 
 To execute configurations with Foundry:
 
