@@ -1,7 +1,7 @@
 <div align="center">
   <h1><code>foundry</code></h1>
 
-  <p><b>Foundry is a CLI tool for automating and managing configurations across remote machines via SSH without requiring a dedicated agent on each target machine like [outpost](https://github.com/johnnyfreeman/outpost).
+  <p><b>Foundry is a CLI tool for automating and managing configurations across remote machines via SSH without requiring a dedicated agent on each target machine like <a href="https://github.com/johnnyfreeman/outpost">outpost</a>.
 </b></p>
 </div>
 
