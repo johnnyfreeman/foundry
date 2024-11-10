@@ -1,20 +1,20 @@
 [[hosts]]
-name = "test-01"
-ip = "root@143.244.145.107"
+name = "server-01"
+ip = "admin@192.168.1.101"
 
 [[hosts]]
-name = "test-02"
-ip = "root@64.227.7.67"
+name = "server-02"
+ip = "admin@192.168.1.102"
 
 [[hosts]]
-name = "test-03"
-ip = "root@137.184.61.50"
+name = "server-03"
+ip = "admin@192.168.1.103"
 
 [[hosts]]
-name = "test-04"
-ip = "root@147.182.221.239"
+name = "server-04"
+ip = "admin@192.168.1.104"
 
 [[users]]
-username = "john"
-password = "password123"
-groups = ["wheel"]
+username = "admin_user"
+password = "strongpassword456"
+groups = ["admin"]
