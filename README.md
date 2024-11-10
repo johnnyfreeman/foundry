@@ -1,86 +1,80 @@
-# Ainulindalë
+# Foundry
 
-*A Rust-based automation tool with a name inspired by Tolkien's legendarium.*
+Foundry is a CLI tool for automating and managing configurations across remote machines via SSH. This tool allows administrators and developers to automate common configuration tasks, such as user management and system setup, across diverse Linux environments without requiring a dedicated agent on each target machine.
 
 ## Overview
 
-**Ainulindalë** is an automation tool designed to orchestrate and manage system configurations across multiple operating systems. With a focus on flexibility, security, and performance, Ainulindalë leverages the power and safety of Rust to streamline infrastructure automation across diverse environments.
+Foundry focuses on simple, SSH-based automation across multiple operating systems, including RHEL 7, RHEL 9, Ubuntu 20.04, and Arch Linux. With an emphasis on reliability and modularity, Foundry provides a streamlined interface for handling configuration tasks, ensuring systems are configured precisely as specified.
+Key Capabilities
 
-At the heart of Ainulindalë is **Eä**, the core engine that brings configurations to life, ensuring that each system is shaped according to your specifications.
+- **Cross-Platform Compatibility**: Apply configurations consistently across multiple Linux distributions.
+- **Agentless Execution**: Connects via SSH without requiring any agents on remote systems.
+- **OS-Specific Task Management**: Supports common system tasks tailored to each OS.
+- **Modular Design**: Designed to grow with additional tasks and features over time.
 
-## Features
+## How It Works
 
-- **Multi-OS Support**: Ensure consistent system management across diverse environments like RHEL 7, RHEL 9, Ubuntu 20.04, and Arch Linux.
-- **SSH-Based Connectivity**: Securely connect to remote machines and execute commands without the need for agents.
-- **User Management**: Handle user creation, password setting, and group assignments tailored to the specific OS.
-- **Modular Design**: Easily extend functionality with custom modules and scripts.
-- **Compiled Binary Deployment**: Distribute pre-built Rust binaries to remote machines, eliminating dependency on installed runtimes.
+Foundry uses a TOML configuration file to define hosts, users, and tasks. It then reads this configuration, connects to each specified machine, and applies configurations based on the parameters provided.
 
-## Getting Started
+## Setup Instructions
 
 ### Prerequisites
 
-To use Ainulindalë, you'll need:
-
-- Rust installed on your local machine for building the tool.
-- SSH access to the remote machines you want to manage.
-- Remote machines should be running one of the supported operating systems: RHEL 7, RHEL 9, Ubuntu 20.04, or Arch Linux.
+- **Rust**: Required to build Foundry.
+- **SSH Access**: Ensure SSH connectivity to each remote machine.
+- **Supported OSes**: Compatible with RHEL 7, RHEL 9, Ubuntu 20.04, and Arch Linux.
 
 ### Installation
 
-1. **Clone the repository:**
+Clone and Build:
 
-    ```bash
-    git clone https://github.com/yourusername/ainulindale.git
-    cd ainulindale
-    ```
+```sh
+git clone https://github.com/johnnyfreeman/foundry.git
+cd foundry
+cargo build --release
+```
 
-2. **Build the tool:**
+Run Foundry:
 
-    ```bash
-    cargo build --release
-    ```
+```sh
+./target/release/foundry --config /path/to/config.toml
+```
 
-3. **Run the tool:**
+Example Configuration File
 
-    ```bash
-    ./target/release/ainulindale
-    ```
-
-### Configuration
-
-Ainulindalë uses a simple configuration file to define the tasks to be executed on remote machines. Here’s a basic example:
+A sample configuration file in TOML format defines hosts and users. Foundry reads this file and applies configurations as instructed:
 
 ```toml
-[hosts]
-rhel7 = ["192.168.1.10", "192.168.1.11"]
-ubuntu = ["192.168.1.12"]
+[[hosts]]
+name = "server-01"
+ip = "admin@192.168.1.101"
 
-[users]
-create = [
-    { username = "john_doe", password = "password123", groups = ["sudo", "users"] }
-]
+[[hosts]]
+name = "server-02"
+ip = "admin@192.168.1.102"
+
+[[hosts]]
+name = "server-03"
+ip = "admin@192.168.1.103"
+
+[[hosts]]
+name = "server-04"
+ip = "admin@192.168.1.104"
+
+[[users]]
+username = "admin_user"
+password = "strongpassword456"
+groups = ["admin"]
 ```
 
-### Usage
+This configuration will connect to the specified servers, create user accounts, and assign them to the defined groups. Future support could extend this format to allow for additional task definitions, such as installing packages or configuring firewall rules.
 
-To run Ainulindalë with your configuration file, use the following command:
+## Usage
 
-```bash
-./ainulindale --config /path/to/config.toml
+To execute configurations with Foundry:
+
+```sh
+foundry --config /path/to/config.toml
 ```
 
-Ainulindalë will connect to each machine listed in the configuration, ensure users are present, and perform any other defined tasks.
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request with your ideas and improvements.
-
-## License
-
-Ainulindalë is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Acknowledgments
-
-While the name *Ainulindalë* is inspired by Tolkien’s *Silmarillion*, the functionality of this tool is independent and purely focused on robust and efficient infrastructure automation. The core engine, **Eä**, brings these configurations to life, ensuring your systems are precisely as you intend.
-
+Foundry will connect to each host in the configuration and apply specified tasks, managing users and permissions as defined.
